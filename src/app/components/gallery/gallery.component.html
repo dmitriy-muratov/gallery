@@ -1,0 +1,7 @@
+<ng-container *ngIf="galleryImages$ | async as galleryImages">
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let galleryImage of galleryImages">
+        <gallery-image [image]="galleryImage"></gallery-image>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-container>
