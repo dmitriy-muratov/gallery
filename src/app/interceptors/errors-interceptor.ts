@@ -36,9 +36,7 @@ export class ErrorsInterceptor implements HttpInterceptor {
 
           return NEVER;
         }
-        if (
-          (error.status === 403 || error.status === 404))
-        ) {
+        if (error.status === 403 || error.status === 404) {
 
           // TODO: this._authService.login();
 
