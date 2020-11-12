@@ -36,11 +36,7 @@ export class ErrorsInterceptor implements HttpInterceptor {
 
           return NEVER;
         }
-        const mainUrls: RegExp[] = [/\/lms\/me$/, /\/lms\/academy$/];
-        if (
-          (error.status === 403 || error.status === 404) &&
-          mainUrls.some((mainUrl: RegExp) => mainUrl.test(error.url!))
-        ) {
+        if (error.status === 403 || error.status === 404) {
 
           // TODO: this._authService.login();
 
