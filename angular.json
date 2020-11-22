@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "agile-photo-gallery": {
+    "ng-starter-auth": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -39,7 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/agile-photo-gallery",
+            "outputPath": "dist/ng-starter-auth",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,7 +66,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -89,18 +88,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "agile-photo-gallery:build"
+            "browserTarget": "ng-starter-auth:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "agile-photo-gallery:build:production"
+              "browserTarget": "ng-starter-auth:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "agile-photo-gallery:build"
+            "browserTarget": "ng-starter-auth:build"
           }
         },
         "test": {
@@ -138,16 +137,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "agile-photo-gallery:serve"
+            "devServerTarget": "ng-starter-auth:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "agile-photo-gallery:serve:production"
+              "devServerTarget": "ng-starter-auth:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "agile-photo-gallery"
+  "defaultProject": "ng-starter-auth"
 }

@@ -1,5 +1,5 @@
 <ng-container *ngIf="galleryImages$ | async as galleryImages">
-  <mat-grid-list cols="3">
+  <mat-grid-list cols="{{ cardLayout | async }}" rowHeight="400" [gutterSize]="'30px'">
     <mat-grid-tile *ngFor="let galleryImage of galleryImages">
         <gallery-image [image]="galleryImage"></gallery-image>
     </mat-grid-tile>

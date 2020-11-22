@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,5 +17,12 @@ export class GalleryComponent {
     map((data: IPaginatedItems<IGalleryImage[]>) => data.pictures)
   );
 
-  constructor(private readonly _galleryService: GalleryService) {}
+  public cardLayout: Observable<any> = this._breakpointObserver.observe(Breakpoints.XSmall).pipe(
+    map(({ matches }) => matches ? 1 : 3)
+  );
+
+  constructor(
+    private readonly _galleryService: GalleryService,
+    private readonly _breakpointObserver: BreakpointObserver
+  ) {}
 }

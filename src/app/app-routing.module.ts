@@ -2,31 +2,34 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './auth.guard';
-import { DialogImageComponent } from './components/dialog-image/dialog-image.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { ImageResolver } from './resolvers/image.resolver';
+import { DialogImageEntryComponent } from './components/dialog-image/dialog-image-entry/dialog-image-entry.component';
 
 const routes: Routes = [
   {
     path: 'images',
-    component: GalleryComponent,
     canActivate: [AuthGuard],
+    component: GalleryComponent,
     children: [
       {
         path: ':imageId',
         pathMatch: 'full',
-        component: DialogImageComponent,
+        component: DialogImageEntryComponent,
+        resolve: {
+          image: ImageResolver,
+        },
       },
     ],
   },
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'images',
+    path: '**',
+    redirectTo: 'images'
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
