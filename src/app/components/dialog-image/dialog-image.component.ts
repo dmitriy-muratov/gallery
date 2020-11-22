@@ -1,33 +1,29 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { takeUntil } from 'rxjs/operators';
-
 import { BaseDialogComponent } from 'src/app/utils/base-dialog-component';
-import { GalleryService } from 'src/app/services/gallery.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'dialog-image',
   styleUrls: ['dialog-image.component.scss'],
   templateUrl: 'dialog-image.component.html',
 })
-export class DialogImageComponent extends BaseDialogComponent<DialogImageComponent> {
+export class DialogImageComponent extends BaseDialogComponent<void> {
   public galleryImage: IGalleryImage;
 
   public constructor(
-    private readonly _route: ActivatedRoute,
-    private readonly _galleryService: GalleryService
+    public dialogRef: MatDialogRef<DialogImageComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      image: IGalleryImage;
+      _activatedRoute: ActivatedRoute;
+    },
   ) {
     super();
-  }
 
-  public ngOnInit(): void {
-    // TODO move to resolver
-    // TODO save data in subject
-    this._galleryService.getImage$(this._route.snapshot.params.imageId).pipe(
-      takeUntil(this._destroy$$)
-    ).subscribe((data: IGalleryImage) => {
-        this.galleryImage = data;
-      });
+    console.log('data dialog', data);
+
+    this.galleryImage = data.image;
   }
 }

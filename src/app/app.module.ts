@@ -6,6 +6,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -24,17 +25,22 @@ import { BaseUrlInterceptor } from './interceptors/base-url-interceptor';
 import { HeadersInterceptor } from './interceptors/headers-interceptor';
 import { ErrorsInterceptor } from './interceptors/errors-interceptor';
 
+import { ImageResolver } from './resolvers/image.resolver';
+
 import { AppComponent } from './app.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { GalleryImageComponent } from './components/gallery/_components/gallery-image/gallery-image.component';
 import { DialogImageComponent } from './components/dialog-image/dialog-image.component';
+import { DialogImageEntryComponent } from './components/dialog-image/dialog-image-entry/dialog-image-entry.component';
 
 @NgModule({
+  exports: [DialogImageComponent],
   declarations: [
     AppComponent,
     GalleryComponent,
     GalleryImageComponent,
-    DialogImageComponent
+    DialogImageComponent,
+    DialogImageEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -44,13 +50,15 @@ import { DialogImageComponent } from './components/dialog-image/dialog-image.com
     MatGridListModule,
     MatCardModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [
     AuthGuard,
     AuthService,
     CookieService,
     GalleryService,
+    ImageResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HeadersInterceptor,
@@ -69,6 +77,7 @@ import { DialogImageComponent } from './components/dialog-image/dialog-image.com
     // { provide: API_URL, useValue: environment.api_url },
     // { provide: API_KEY, useValue: environment.api_key },
   ],
+  entryComponents: [DialogImageComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

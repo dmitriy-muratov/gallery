@@ -1,0 +1,11 @@
+.gallery {
+  &__image {
+    cursor: pointer;
+  }
+
+  &__button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}

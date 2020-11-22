@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
       tap((data: IAuthData) => {
         if (!data) {
           // TODO navigate to login page, etc
-          // this._router.navigate(['/']);
+          this._router.navigate(['/']);
         }
 
         this._authService.setAccessToken(data.token);

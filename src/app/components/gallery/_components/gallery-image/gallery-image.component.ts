@@ -1,8 +1,5 @@
 import {Component, Input} from '@angular/core';
-import { Router } from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
-
-import { DialogImageComponent } from 'src/app/components/dialog-image/dialog-image.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'gallery-image',
@@ -13,19 +10,11 @@ export class GalleryImageComponent {
   @Input() public image: IGalleryImage;
 
   public constructor(
-    private _dialog: MatDialog,
-    private _router: Router,
+    private readonly _router: Router,
+    private readonly _activatedRoute: ActivatedRoute
   ){}
-
 
   public openImageDialog(image: IGalleryImage): void {
     this._router.navigate([`images/${image.id}`]);
-
-    this._dialog.open(
-      DialogImageComponent,
-      {
-        data: {image},
-      },
-    );
   }
 }
