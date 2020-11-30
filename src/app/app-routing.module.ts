@@ -2,25 +2,24 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './auth.guard';
-import { GalleryComponent } from './components/gallery/gallery.component';
 import { ImageResolver } from './resolvers/image.resolver';
+
+import { GalleryComponent } from './components/gallery/gallery.component';
 import { DialogImageEntryComponent } from './components/dialog-image/dialog-image-entry/dialog-image-entry.component';
 
 const routes: Routes = [
   {
     path: 'images',
     canActivate: [AuthGuard],
-    component: GalleryComponent,
-    children: [
-      {
-        path: ':imageId',
-        pathMatch: 'full',
-        component: DialogImageEntryComponent,
-        resolve: {
-          image: ImageResolver,
-        },
-      },
-    ],
+    component: GalleryComponent
+  },
+  {
+    path: 'images/:imageId',
+    pathMatch: 'full',
+    component: DialogImageEntryComponent,
+    resolve: {
+      image: ImageResolver,
+    },
   },
   {
     path: '**',

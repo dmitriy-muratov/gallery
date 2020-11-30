@@ -17,6 +17,10 @@ export class AuthService {
     private _cookieService: CookieService,
   ) {}
 
+  public isAuthenticated(): Observable<boolean> {
+    return of(Boolean(this.getAccessToken()));
+  }
+
   public login$(): Observable<IAuthData> {
     // TODO: finish injection
     // return this._httpClient.post<IAuthData>('auth', { apiKey: this._API_KEY });
