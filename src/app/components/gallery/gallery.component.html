@@ -1,6 +1,6 @@
 <ng-container *ngIf="galleryImages$ | async as galleryImages">
   <mat-grid-list cols="{{ cardLayout | async }}" rowHeight="400" [gutterSize]="'30px'">
-    <mat-grid-tile *ngFor="let galleryImage of galleryImages">
+    <mat-grid-tile *ngFor="let galleryImage of galleryImages; trackBy: trackById" @itemFadeInOut>
         <gallery-image [image]="galleryImage"></gallery-image>
     </mat-grid-tile>
   </mat-grid-list>

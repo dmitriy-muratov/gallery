@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-import { takeUntil, pluck, tap } from 'rxjs/operators';
+import { takeUntil, pluck, tap, map, take } from 'rxjs/operators';
 
 import { BaseComponent } from 'src/app/utils/base-component';
 import { DialogImageComponent } from '../dialog-image.component';
@@ -18,22 +18,16 @@ export class DialogImageEntryComponent extends BaseComponent {
     private readonly _router: Router
   ) {
     super();
-    console.log('DialogImageEntryComponent')
 
     this.openDialog();
   }
 
   public openDialog(): void {
-
-    console.log('!!! openDialog');
-
     this._activatedRoute.data
       .pipe(
-        tap(() => console.log('DialogImageEntryComponent')),
         pluck('image'),
         takeUntil(this._destroy$$)
-      ).subscribe((data: IGalleryImage) => {
-        console.log({data})
+      ).subscribe((data: any) => {
         if (!data) {
           this._router.navigate(['images']);
         }
@@ -42,9 +36,8 @@ export class DialogImageEntryComponent extends BaseComponent {
           DialogImageComponent,
           {
             data: {
-              data,
-              activatedRoute: this._activatedRoute,
-            },
+              image: data
+            }
           },
         );
 

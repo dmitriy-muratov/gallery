@@ -9,5 +9,7 @@
 
   <mat-card-subtitle>Sub title</mat-card-subtitle>
 
-  <img (click)="openImageDialog(image)" mat-card-image [src]="image.cropped_picture" class="gallery__image" alt="Image description">
+  <a [routerLink]="['/', 'images', image.id]">
+    <img mat-card-image [src]="image.cropped_picture" class="gallery__image" alt="Image description">
+  </a>
 </mat-card>
