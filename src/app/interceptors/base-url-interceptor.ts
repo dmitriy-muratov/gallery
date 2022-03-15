@@ -14,6 +14,6 @@ export class BaseUrlInterceptor implements HttpInterceptor {
   public intercept(req: HttpRequest<{}>, next: HttpHandler): Observable<HttpEvent<{}>> {
     // TODO: finish injection
     // return next.handle(req.clone({ url: this._API_URL  + req.url }));
-    return next.handle(req.clone({ url: 'http://interview.agileengine.com/'  + req.url }));
+    return next.handle(req.clone({ url: 'http://test.com/'  + req.url }));
   }
 }
